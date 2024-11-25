@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Redirect</title>
+  <link href='https://fonts.googleapis.com/css?family=ADLaM Display' rel='stylesheet'>
+
+    <style>
+      #button{
+        outline: 2px solid lightgreen; /* Change the weight (2px) and color */
+      border: none; /* Remove default border */
+      padding: 5px 35px; /* Add padding for better appearance */
+      background-color: white; /* Button background color */
+      color: lightgreen; /* Text color */
+      cursor: pointer; /* Change cursor to pointer */
+      border-radius: 10px; /* Make corners rounded */
+      font-size: 15px;
+      font-family: 'ADLaM Display';
+      }
+    </style>
+
+  <script>
+    function redirectUser() {
+      // The encoded version of the code "song" (Base64 encoding)
+      const encodedCode = "RG9ubmE=";
+
+      // Define your code-URL mappings
+      const codeRedirects = {
+        [encodedCode]: "poem-completed.html", // Use encoded key
+      };
+
+      // Get the input value and encode it
+      const userInput = btoa(document.getElementById("codeInput").value); // Encode input
+
+      // Check if the encoded input matches
+      if (codeRedirects[userInput]) {
+        window.location.href = codeRedirects[userInput]; // Redirect to the URL
+      } else {
+        alert("Invalid code! Please try again."); // Show an error if the code is invalid
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Enter Your Code</h1>
+  <form id="codeForm" onsubmit="event.preventDefault(); redirectUser();">
+    <input type="text" id="codeInput" placeholder="Enter code here" required>
+    <br>
+    <br>
+    <button type="submit" id="button">SUBMIT</button>
+  </form>
+</body>
+</html>
